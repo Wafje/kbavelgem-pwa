@@ -1,0 +1,17 @@
+{
+  "extends": [
+    "@nuxtjs/eslint-config-typescript"
+  ],
+  "rules": {
+    "vue/multi-word-component-names": "off",
+    "comma-dangle": "off",
+    "@typescript-eslint/comma-dangle": ["error", {
+        "arrays": "never",
+        "objects": "always-multiline",
+        "imports": "never",
+        "exports": "never",
+        "functions": "never"
+    }],
+    "@typescript-eslint/no-unused-vars": ["error", { "varsIgnorePattern": "props|data|error" }]
+  }
+}
