@@ -5,6 +5,7 @@
         <Tab v-for="category in categories" :key="category" v-slot="{ selected }" as="template">
           <button
             :class="[
+              'no_highlights',
               'w-full rounded-lg py-2.5 text-sm font-medium leading-5',
               'ring-white/60 ring-offset-2 ring-offset-green-700 outline-none',
               selected
@@ -41,3 +42,15 @@ const team = resp.data.value[0]
 
 const categories = ['Ranking', 'Matches']
 </script>
+
+<style>
+.no_highlights{
+      -webkit-tap-highlight-color: transparent;
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      -khtml-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+</style>
