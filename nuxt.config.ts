@@ -2,10 +2,13 @@
 export default defineNuxtConfig({
   app: {
     head: {
-      title: 'Scaldis',
+      title: 'Jeugdbasket Scaldis Zwevegem',
       charset: 'utf-16',
     },
   },
+  modules: [
+    '@nuxtjs/device'
+  ],
   css: ['~/assets/css/main.css'],
   postcss: {
     plugins: {
@@ -18,6 +21,6 @@ export default defineNuxtConfig({
   },
   ssr: false,
   devtools: {
-    enabled: false,
+    enabled: true,
   },
 })

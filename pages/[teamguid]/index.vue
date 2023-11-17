@@ -1,28 +1,43 @@
 <template>
-  <div>
-    <div class="sm:hidden">
-      <label for="tabs" class="sr-only">Select a tab</label>
-      <!-- Use an "onChange" listener to redirect the user to the selected tab URL. -->
-      <select id="tabs" name="tabs" class="block w-full rounded-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500">
-        <option v-for="tab in tabs" :key="tab.name" :selected="tab.current">{{ tab.name }}</option>
-      </select>
-    </div>
-    <div class="hidden sm:block">
-      <nav class="isolate flex divide-x divide-gray-200 rounded-lg shadow" aria-label="Tabs">
-        <a v-for="(tab, tabIdx) in tabs" :key="tab.name" :href="tab.href" :class="[tab.current ? 'text-gray-900' : 'text-gray-500 hover:text-gray-700', tabIdx === 0 ? 'rounded-l-lg' : '', tabIdx === tabs.length - 1 ? 'rounded-r-lg' : '', 'group relative min-w-0 flex-1 overflow-hidden bg-white py-4 px-4 text-center text-sm font-medium hover:bg-gray-50 focus:z-10']" :aria-current="tab.current ? 'page' : undefined">
-          <span>{{ tab.name }}</span>
-          <span aria-hidden="true" :class="[tab.current ? 'bg-indigo-500' : 'bg-transparent', 'absolute inset-x-0 bottom-0 h-0.5']" />
-        </a>
-      </nav>
-    </div>
+  <div class="mx-auto max-w-2xl">
+    <TabGroup>
+      <TabList class="flex space-x-1 rounded-xl bg-green-900/20 p-1">
+        <Tab v-for="category in categories" :key="category" v-slot="{ selected }" as="template">
+          <button
+            :class="[
+              'w-full rounded-lg py-2.5 text-sm font-medium leading-5',
+              'ring-white/60 ring-offset-2 ring-offset-green-700 outline-none',
+              selected
+                ? 'bg-white text-green-700 shadow'
+                : 'text-green-100 hover:bg-white/[0.12] hover:text-white',
+            ]"
+          >
+            {{ category }}
+          </button>
+        </Tab>
+      </TabList>
+      <TabPanels class="mt-2">
+        <TabPanel>
+          <TeamRanking :teamguid="route.params.teamguid" />
+        </TabPanel>
+        <TabPanel>
+          <TeamMatches :teamguid="route.params.teamguid" />
+        </TabPanel>
+      </TabPanels>
+    </TabGroup>
   </div>
 </template>
 
 <script setup>
-const tabs = [
-  { name: 'Ranking', href: '#', current: true },
-  { name: 'Matches', href: '#', current: false },
-  { name: 'Team Members', href: '#', current: false },
-  { name: 'Billing', href: '#', current: false },
-]
+import { TabGroup, TabList, Tab, TabPanels, TabPanel } from '@headlessui/vue'
+
+const route = useRoute()
+
+const url = new URL('http://vblcb.wisseq.eu/VBLCB_WebService/data/TeamDetailByGuid')
+url.searchParams.append('teamguid', route.params.teamguid)
+
+const resp = await useFetch(url.toString())
+const team = resp.data.value[0]
+
+const categories = ['Ranking', 'Matches']
 </script>
