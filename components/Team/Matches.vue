@@ -32,9 +32,9 @@
 <script setup lang="ts">
 import { MapPinIcon } from '@heroicons/vue/24/outline'
 import moment from 'moment'
+import { isIfStatement } from 'typescript'
 
 const props = defineProps<{ teamguid: string }>()
-const { isDesktop } = useDevice()
 
 const url = new URL('https://vblcb.wisseq.eu/VBLCB_WebService/data/TeamMatchesByGuid')
 url.searchParams.append('teamguid', props.teamguid)
@@ -77,11 +77,14 @@ const getAddress = async (matchGuid: string) => {
 }
 
 const getAddressURI = async (matchGuid: string) => {
+  const { isAndroid, isIos } = useDevice()
   const address = await getAddress(matchGuid)
   address.replaceAll(' ', '+')
 
-  if (!isDesktop) {
+  if (isAndroid) {
     return new URL('geo:0,0?q=' + address)
+  } else if (isIos) {
+    return new URL('https://maps.apple.com/?q=' + address)
   } else {
     return new URL('https://maps.google.com/?q=' + address)
   }

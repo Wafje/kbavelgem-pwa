@@ -23,16 +23,6 @@
         </div>
       </NuxtLink>
     </ul>
-    <ul>
-      <p>isDesktop {{ isDesktop }}</p>
-      <p>isMobile {{ isMobile }}</p>
-      <p>isIos {{ isIos }}</p>
-      <p>isAndroid {{ isAndroid }}</p>
-      <p>isWindows {{ isWindows }}</p>
-      <p>isMacOS {{ isMacOS }}</p>
-      <p>isChrome {{ isChrome }}</p>
-      <p>isSafari {{ isSafari }}</p>
-    </ul>
   </div>
 </template>
 
@@ -44,7 +34,4 @@ const teams = resp.data.value[0].teams
 const abbreviation = (teamname, name) => {
   return name.replace(teamname, '').trim()
 }
-
-const { isDesktop, isMobile, isIos, isAndroid, isWindows, isMacOS, isChrome, isSafari } = useDevice()
-
 </script>
