@@ -46,7 +46,7 @@
 <script setup lang="ts">
 const props = defineProps<{ teamguid: string }>()
 
-const url = new URL('http://vblcb.wisseq.eu/VBLCB_WebService/data/TeamDetailByGuid')
+const url = new URL('https://vblcb.wisseq.eu/VBLCB_WebService/data/TeamDetailByGuid')
 url.searchParams.append('teamguid', props.teamguid)
 
 const resp = await useFetch(url.toString())

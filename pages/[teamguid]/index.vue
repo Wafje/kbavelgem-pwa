@@ -33,7 +33,7 @@ import { TabGroup, TabList, Tab, TabPanels, TabPanel } from '@headlessui/vue'
 
 const route = useRoute()
 
-const url = new URL('http://vblcb.wisseq.eu/VBLCB_WebService/data/TeamDetailByGuid')
+const url = new URL('https://vblcb.wisseq.eu/VBLCB_WebService/data/TeamDetailByGuid')
 url.searchParams.append('teamguid', route.params.teamguid)
 
 const resp = await useFetch(url.toString())

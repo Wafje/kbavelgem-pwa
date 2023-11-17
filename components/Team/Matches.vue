@@ -36,7 +36,7 @@ import moment from 'moment'
 const props = defineProps<{ teamguid: string }>()
 const { isDesktop } = useDevice()
 
-const url = new URL('http://vblcb.wisseq.eu/VBLCB_WebService/data/TeamMatchesByGuid')
+const url = new URL('https://vblcb.wisseq.eu/VBLCB_WebService/data/TeamMatchesByGuid')
 url.searchParams.append('teamguid', props.teamguid)
 
 const resp = await useFetch(url.toString())

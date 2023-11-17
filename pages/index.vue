@@ -27,7 +27,7 @@
 </template>
 
 <script setup>
-const resp = await useFetch('http://vblcb.wisseq.eu/VBLCB_WebService/data/OrgDetailByGuid?issguid=BVBL1413')
+const resp = await useFetch('https://vblcb.wisseq.eu/VBLCB_WebService/data/OrgDetailByGuid?issguid=BVBL1413')
 const teamname = resp.data.value[0].naam
 const teams = resp.data.value[0].teams
 
