@@ -92,7 +92,9 @@ const getAddressURI = async (matchGuid: string) => {
 
 const openMaps = (matchGuid: string) => {
   getAddressURI(matchGuid).then((url) => {
-    navigateTo(url)
+    setTimeout(() => {
+      window.open(url, '_blank')
+    })
   })
 }
 </script>
