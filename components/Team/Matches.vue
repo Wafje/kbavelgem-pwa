@@ -91,10 +91,12 @@ const getAddressURI = async (matchGuid: string) => {
 }
 
 const openMaps = (matchGuid: string) => {
+  const windowReference = window.open()
+
   getAddressURI(matchGuid).then((url) => {
-    setTimeout(() => {
-      window.open(url, '_blank')
-    })
+    if (windowReference) {
+      windowReference.location = url.toString()
+    }
   })
 }
 </script>
