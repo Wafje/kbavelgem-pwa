@@ -9,7 +9,7 @@ export default defineNuxtConfig({
         { rel: 'apple-touch-icon-precomposed', href: '/public/favicon-152.png' }
       ],
       meta: [
-        { name: 'theme-color', content: '#22c55e'},
+        { name: 'theme-color', content: '#22c55e' }
       ],
     },
   },
@@ -18,6 +18,7 @@ export default defineNuxtConfig({
       name: 'Jeugdbasket Scaldis Zwevegem',
       description: 'App to display ranking and matches',
       background_color: '#22c55e',
+      short_name: 'Scaldis',
     },
     icon: {
       maskablePadding: 0,
