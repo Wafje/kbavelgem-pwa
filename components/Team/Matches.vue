@@ -77,13 +77,13 @@ const getAddress = async (matchGuid: string) => {
 }
 
 const getAddressURI = async (matchGuid: string) => {
-  const { isAndroid, isIos } = useDevice()
+  const { isAndroid, isSafari } = useDevice()
   const address = await getAddress(matchGuid)
   address.replaceAll(' ', '+')
 
   if (isAndroid) {
     return new URL('geo:0,0?q=' + address)
-  } else if (isIos) {
+  } else if (isSafari) {
     return new URL('https://maps.apple.com/?q=' + address)
   } else {
     return new URL('https://maps.google.com/?q=' + address)
@@ -91,11 +91,13 @@ const getAddressURI = async (matchGuid: string) => {
 }
 
 const openMaps = (matchGuid: string) => {
-  const windowReference = window.open()
+  const { isSafari } = useDevice()
 
   getAddressURI(matchGuid).then((url) => {
-    if (windowReference) {
-      windowReference.location = url.toString()
+    if (isSafari) {
+      window.location.assign(url)
+    } else {
+      window.open(url)
     }
   })
 }
