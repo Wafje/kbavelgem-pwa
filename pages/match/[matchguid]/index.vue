@@ -6,20 +6,27 @@
       </div>
       <div class="py-1 flex flex-row justify-between w-full">
         <div class="flex-1 flex items-center justify-start">
-          <img class="h-8 w-8 rounded-full bg-gray-50 ring-2 ring-white object-cover"
-            :src="getImageUrl(match.teamThuisGUID)">
+          <img
+            class="h-8 w-8 rounded-full bg-gray-50 ring-2 ring-white object-cover"
+            :src="getImageUrl(match.teamThuisGUID)"
+          >
           <span class="px-2 text-xs font-thin">{{ match.teamThuisNaam }}</span>
         </div>
         <div class="px-1 flex-shrink font-semibold">
-          <button v-if="match.uitslag" type="button"
-            class="inline-flex items-center gap-x-1.5 rounded-md bg-white text-green-700 shadow px-3 py-2 text-base font-semibold hover:bg-green-50">
+          <button
+            v-if="match.uitslag"
+            type="button"
+            class="no_highlights inline-flex items-center gap-x-1.5 rounded-md bg-white text-green-700 shadow px-3 py-2 text-base font-semibold hover:bg-green-50"
+          >
             {{ convertScore(match.uitslag) }}
           </button>
         </div>
         <div class="flex-1 flex items-center justify-end text-right">
           <span class="px-2 text-xs font-thin">{{ match.teamUitNaam }}</span>
-          <img class="h-8 w-8 rounded-full bg-gray-50 ring-2 ring-white object-cover"
-            :src="getImageUrl(match.teamUitGUID)">
+          <img
+            class="h-8 w-8 rounded-full bg-gray-50 ring-2 ring-white object-cover"
+            :src="getImageUrl(match.teamUitGUID)"
+          >
         </div>
       </div>
     </div>
@@ -145,3 +152,15 @@ const convertScore = (score) => {
 }
 
 </script>
+
+<style>
+.no_highlights{
+      -webkit-tap-highlight-color: transparent;
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      -khtml-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+</style>
