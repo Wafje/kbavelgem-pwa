@@ -4,7 +4,7 @@
       Teams
     </h2>
     <ul role="list" class="mt-3 grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
-      <NuxtLink v-for="team in teams" :key="team.naam" :to="team.guid" class="col-span-1 flex rounded-md shadow-sm">
+      <NuxtLink v-for="team in teams" :key="team.naam" :to="`/team/${team.guid}`" class="col-span-1 flex rounded-md shadow-sm">
         <div
           class="flex w-16 flex-shrink-0 items-center justify-center rounded-l-md text-sm font-medium text-white"
           :style="{ backgroundColor: team.shirtKleur }"

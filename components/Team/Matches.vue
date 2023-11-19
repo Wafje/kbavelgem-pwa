@@ -10,8 +10,12 @@
             <img class="h-8 w-8 rounded-full bg-gray-50 ring-2 ring-white object-cover" :src="getImageUrl(match.tTGUID)">
             <span class="px-2 text-xs font-thin">{{ match.tTNaam }}</span>
           </div>
-          <div class="px-1 flex-shrink text-xl font-semibold">
-            {{ convertScore(match.uitslag) }}
+          <div class="px-1 flex-shrink font-semibold">
+            <button v-if="match.uitslag" type="button" class="inline-flex items-center gap-x-1.5 rounded-md bg-white text-green-700 shadow px-3 py-2 text-base font-semibold hover:bg-green-50">
+              <NuxtLink :to="`/match/${match.guid}`">
+                {{ convertScore(match.uitslag) }}
+              </NuxtLink>
+            </button>
           </div>
           <div class="flex-1 flex items-center justify-end text-right">
             <span class="px-2 text-xs font-thin">{{ match.tUNaam }}</span>
@@ -20,7 +24,7 @@
         </div>
       </div>
       <div class="flex justify-end py-4">
-        <button type="button" class="inline-flex items-center gap-x-1.5 rounded-md bg-indigo-600 px-3 py-2 text-xs font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" @click="openMaps(match.guid)">
+        <button type="button" class="inline-flex items-center gap-x-1.5 rounded-md bg-white text-green-700 shadow px-3 py-2 text-xs font-semibold hover:bg-green-50" @click="openMaps(match.guid)">
           {{ match.accNaam }}
           <MapPinIcon class="-mr-0.5 h-5 w-5" aria-hidden="true" />
         </button>
