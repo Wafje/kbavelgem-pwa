@@ -113,13 +113,15 @@ if (respEvents.data.value && respEvents.data.value.GebNis) {
       continue
     }
 
-    if (e.GebType === 10) {
-      const regex = /\d+/g
-      const points = parseInt(e.Text.match(regex))
-      team[e.RelGUID].score += points
-      if (points === 3) { team[e.RelGUID].p3 += 1 }
-    } else if (e.GebType === 30) {
-      team[e.RelGUID].fouls += 1
+    if (team[e.RelGUID]) {
+      if (e.GebType === 10) {
+        const regex = /\d+/g
+        const points = parseInt(e.Text.match(regex))
+        team[e.RelGUID].score += points
+        if (points === 3) { team[e.RelGUID].p3 += 1 }
+      } else if (e.GebType === 30) {
+        team[e.RelGUID].fouls += 1
+      }
     }
   }
 }
