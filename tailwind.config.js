@@ -10,6 +10,9 @@ module.exports = {
     './app.vue'
   ],
   theme: {
+    fontFamily: {
+      anton: ['Anton', 'sans-serif'],
+    },
     extend: {},
   },
   plugins: [

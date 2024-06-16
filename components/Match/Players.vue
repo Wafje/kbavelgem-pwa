@@ -18,7 +18,7 @@
       </thead>
       <tbody class="divide-y divide-white/5">
         <tr v-for="player in players" v-bind:key="player.nr">
-          <td class="text-green-600 px-2 text-left">{{ player.nr }}</td>
+          <td class="text-yellow-600 px-2 text-left">{{ player.nr }}</td>
           <td class="px-2 text-left">{{ player.name }}</td>
           <td class="px-2 text-center sm:table-cell">{{ player.fouls }}</td>
           <td class="px-2 text-center sm:table-cell">{{ player.p3 }}</td>

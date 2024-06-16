@@ -16,7 +16,7 @@
           <button
             v-if="match.uitslag"
             type="button"
-            class="no_highlights inline-flex items-center gap-x-1.5 rounded-md bg-white text-green-700 shadow px-3 py-2 text-base font-semibold hover:bg-green-50"
+            class="no_highlights inline-flex items-center gap-x-1.5 rounded-md bg-white text-yellow-700 shadow px-3 py-2 text-base font-semibold hover:bg-yellow-50"
           >
             {{ convertScore(match.uitslag) }}
           </button>

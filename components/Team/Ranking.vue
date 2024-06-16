@@ -29,7 +29,7 @@
       </thead>
       <tbody class="divide-y divide-white/5">
         <tr v-for="team in poule.teams" v-bind:key="team.guid">
-          <td class="text-green-600 px-2 text-left">{{ team.rangNr.trim() }}</td>
+          <td class="text-yellow-600 px-2 text-left">{{ team.rangNr.trim() }}</td>
           <td class="px-2 text-left">{{ team.naam }}</td>
           <td class="hidden px-2 text-center sm:table-cell font-thin">{{ team.wedWinst }}</td>
           <td class="hidden px-2 text-center sm:table-cell font-thin">{{ team.wedGelijk }}</td>

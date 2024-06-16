@@ -5,10 +5,7 @@
     </h2>
     <ul role="list" class="mt-3 grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
       <NuxtLink v-for="team in teams" :key="team.naam" :to="`/team/${team.guid}`" class="col-span-1 flex rounded-md shadow-sm">
-        <div
-          class="flex w-16 flex-shrink-0 items-center justify-center rounded-l-md text-sm font-medium text-white"
-          :style="{ backgroundColor: team.shirtKleur }"
-        >
+        <div class="flex w-16 flex-shrink-0 items-center justify-center rounded-l-md text-sm font-medium text-white bg-[#EBCD35] hover:bg-gray-900">
           {{ abbreviation(teamname, team.naam) }}
         </div>
         <div class="flex flex-1 items-center justify-between truncate rounded-r-md border-b border-r border-t border-gray-200 bg-white">
@@ -27,7 +24,8 @@
 </template>
 
 <script setup>
-const resp = await useFetch('https://vblcb.wisseq.eu/VBLCB_WebService/data/OrgDetailByGuid?issguid=BVBL1413')
+const guid = 'BVBL1441'
+const resp = await useFetch(`https://vblcb.wisseq.eu/VBLCB_WebService/data/OrgDetailByGuid?issguid=${guid}`)
 const teamname = resp.data.value[0].naam
 const teams = resp.data.value[0].teams
 

@@ -1,6 +1,6 @@
 <template>
   <ul role="list" class="divide-y divide-gray-100">
-    <li v-for="match in matches" :key="matches.guid">
+    <li v-for="match in matches" :ref="match.lastMatch ? 'lastmatch' : null" :key="matches.guid">
       <div class="flex flex-col items-center pt-4">
         <div class="font-thin">
           {{ convertDate(match.datumString, match.beginTijd) }}
@@ -11,7 +11,7 @@
             <span class="px-2 text-xs font-thin">{{ match.tTNaam }}</span>
           </div>
           <div class="px-1 flex-shrink font-semibold">
-            <button v-if="match.uitslag" type="button" class="inline-flex items-center gap-x-1.5 rounded-md bg-white text-green-700 shadow px-3 py-2 text-base font-semibold hover:bg-green-50">
+            <button v-if="match.uitslag" type="button" class="inline-flex items-center gap-x-1.5 rounded-md bg-white text-yellow-700 shadow px-3 py-2 text-base font-semibold hover:bg-yellow-50">
               <NuxtLink :to="`/match/${match.guid}`">
                 {{ convertScore(match.uitslag) }}
               </NuxtLink>
@@ -24,7 +24,7 @@
         </div>
       </div>
       <div class="flex justify-end py-4">
-        <button type="button" class="inline-flex items-center gap-x-1.5 rounded-md bg-white text-green-700 shadow px-3 py-2 text-xs font-semibold hover:bg-green-50" @click="openMaps(match.guid)">
+        <button type="button" class="inline-flex items-center gap-x-1.5 rounded-md bg-white text-yellow-700 shadow px-3 py-2 text-xs font-semibold hover:bg-yellow-50" @click="openMaps(match.guid)">
           {{ match.accNaam }}
           <MapPinIcon class="-mr-0.5 h-5 w-5" aria-hidden="true" />
         </button>
@@ -36,7 +36,6 @@
 <script setup lang="ts">
 import { MapPinIcon } from '@heroicons/vue/24/outline'
 import moment from 'moment'
-import { isIfStatement } from 'typescript'
 
 const props = defineProps<{ teamguid: string }>()
 
@@ -44,8 +43,32 @@ const url = new URL('https://vblcb.wisseq.eu/VBLCB_WebService/data/TeamMatchesBy
 url.searchParams.append('teamguid', props.teamguid)
 
 const resp = await useFetch(url.toString())
-const matches: Array<object> = resp.data.value
+let matches: Array<object> = resp.data.value
 matches.sort((a, b) => { return a.jsDTCode - b.jsDTCode })
+
+// Find most recent match
+let lastMatch = 0
+for (let i = 0; i < matches.length; i++) {
+  if (moment(matches[i].jsDTCode).isBefore(moment())) {
+    lastMatch = i
+  }
+}
+
+matches = matches.map((match, index) => {
+  return {
+    ...match,
+    lastMatch: index === lastMatch,
+  }
+})
+
+const lastmatch = ref(null)
+
+onMounted(() => {
+  if (lastmatch.value) {
+    console.log(lastmatch.value[0])
+    lastmatch.value[0].scrollIntoView({ behavior: 'smooth', block: 'start' })
+  }
+})
 
 const getImageUrl = (guid: string) => {
   const regex = /BVBL\d+/g

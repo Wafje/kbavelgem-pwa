@@ -2,23 +2,25 @@
 export default defineNuxtConfig({
   app: {
     head: {
-      title: 'Jeugdbasket Scaldis Zwevegem',
+      title: 'Koninklijke Basket Avelgem',
       charset: 'utf-16',
       link: [
-        { rel: 'icon', sizes: '16x16 32x32', href: '/public/favicon.ico' },
-        { rel: 'apple-touch-icon-precomposed', href: '/public/favicon-152.png' }
+        { rel: 'icon', sizes: '16x16', href: '/public/favicon-16x16.png' },
+        { rel: 'icon', sizes: '32x32', href: '/public/favicon-32x32.png' },
+        { rel: 'apple-touch-icon-precomposed', href: '/public/apple-touch-icon.png' },
+        { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Anton&display=swap'},
       ],
       meta: [
-        { name: 'theme-color', content: '#22c55e' }
+        { name: 'theme-color', content: '#EBCD35' }
       ],
     },
   },
   pwa: {
     manifest: {
-      name: 'Jeugdbasket Scaldis Zwevegem',
+      name: 'Koninklijke Basket Avelgem',
       description: 'App to display ranking and matches',
-      background_color: '#22c55e',
-      short_name: 'Scaldis',
+      background_color: '#EBCD35',
+      short_name: 'KB Avelgem',
     },
     icon: {
       maskablePadding: 0,

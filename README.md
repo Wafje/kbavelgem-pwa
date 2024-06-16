@@ -1,2 +1,2 @@
-# Scaldis APP
-App for Jeugdbasket Scaldis Zwevegem
+# KBA APP
+App for Koninklijke Basket Avelgem

@@ -19,10 +19,10 @@
       </TabList>
       <TabPanels class="mt-2">
         <TabPanel>
-          <TeamRanking :teamguid="route.params.teamguid" />
+          <TeamMatches :teamguid="route.params.teamguid" />
         </TabPanel>
         <TabPanel>
-          <TeamMatches :teamguid="route.params.teamguid" />
+          <TeamRanking :teamguid="route.params.teamguid" />
         </TabPanel>
       </TabPanels>
     </TabGroup>
