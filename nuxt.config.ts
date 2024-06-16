@@ -11,7 +11,7 @@ export default defineNuxtConfig({
         { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Anton&display=swap' }
       ],
       meta: [
-        { name: 'theme-color', content: '#EBCD35' }
+        { name: 'theme-color', content: '#212529' }
       ],
     },
   },
@@ -19,7 +19,7 @@ export default defineNuxtConfig({
     manifest: {
       name: 'Koninklijke Basket Avelgem',
       description: 'App to display ranking and matches',
-      background_color: '#EBCD35',
+      background_color: '#212529',
       short_name: 'KB Avelgem',
     },
     icon: {
