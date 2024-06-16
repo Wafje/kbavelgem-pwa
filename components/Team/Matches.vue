@@ -1,6 +1,6 @@
 <template>
   <ul role="list" class="divide-y divide-gray-100">
-    <li v-for="match in matches" :ref="match.lastMatch ? 'lastmatch' : null" :key="matches.guid">
+    <li v-for="match in matches" :key="matches.guid">
       <div class="flex flex-col items-center pt-4">
         <div class="font-thin">
           {{ convertDate(match.datumString, match.beginTijd) }}
@@ -43,32 +43,8 @@ const url = new URL('https://vblcb.wisseq.eu/VBLCB_WebService/data/TeamMatchesBy
 url.searchParams.append('teamguid', props.teamguid)
 
 const resp = await useFetch(url.toString())
-let matches: Array<object> = resp.data.value
+const matches: Array<object> = resp.data.value
 matches.sort((a, b) => { return a.jsDTCode - b.jsDTCode })
-
-// Find most recent match
-let lastMatch = 0
-for (let i = 0; i < matches.length; i++) {
-  if (moment(matches[i].jsDTCode).isBefore(moment())) {
-    lastMatch = i
-  }
-}
-
-matches = matches.map((match, index) => {
-  return {
-    ...match,
-    lastMatch: index === lastMatch,
-  }
-})
-
-const lastmatch = ref(null)
-
-onMounted(() => {
-  if (lastmatch.value) {
-    console.log(lastmatch.value[0])
-    lastmatch.value[0].scrollIntoView({ behavior: 'smooth', block: 'start' })
-  }
-})
 
 const getImageUrl = (guid: string) => {
   const regex = /BVBL\d+/g
