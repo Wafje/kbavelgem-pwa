@@ -40,7 +40,7 @@ url.searchParams.append('teamguid', route.params.teamguid)
 const resp = await useFetch(url.toString())
 const team = resp.data.value[0]
 
-const categories = ['Ranking', 'Matches']
+const categories = ['Matches', 'Ranking']
 </script>
 
 <style>
